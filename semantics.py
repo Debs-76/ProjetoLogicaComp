@@ -1,6 +1,6 @@
 from ProjetoLogicaComp.formula import *
 from ProjetoLogicaComp.functions import atoms
-
+from functools import reduce
 
 def truth_value(formula, interpretation):
     if isinstance(formula, Atom):
@@ -37,17 +37,12 @@ def truth_value(formula, interpretation):
 
 
 
-def is_logical_consequence(premises: list, conclusion):
+def is_logical_consequence(premises, conclusion):
+    and_premises = reduce(lambda x, y: And(x, y), premises)
+    if is_satisfiable(And(and_premises, Not(conclusion))):
+        return False
+    return True
 
-    return False if is_satisfiable(And(join_formula_and(premises), Not(conclusion))) else True
-
-
-
-
-
-def join_formula_and(formulas_list: list):
-    return formulas_list[0] if len(formulas_list) == 1 else And(formulas_list.pop(),
-                                                                join_formula_and(formulas_list.copy()))
 
 
 
