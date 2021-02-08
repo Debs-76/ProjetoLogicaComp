@@ -117,10 +117,6 @@ def get_partial_interpretation(formula):
 
         if (left and right):
             return union_dict(left, right)
-        if left:
-            return left
-        else:
-            return right
 
         return None
 
