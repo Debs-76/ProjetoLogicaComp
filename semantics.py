@@ -84,10 +84,10 @@ def sat(formula, atoms_list, interpretation):
 
         return interpretation if result else False
 
-    atom_ = atoms_list.pop()
+    atom = atoms_list.pop()
 
-    interpretation1 = union_dict(interpretation, {atom_: True})
-    interpretation2 = union_dict(interpretation, {atom_: False})
+    interpretation1 = union_dict(interpretation, {atom: True})
+    interpretation2 = union_dict(interpretation, {atom: False})
 
     result = sat(formula, atoms_list.copy(), interpretation1)
 
